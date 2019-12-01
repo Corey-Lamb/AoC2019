@@ -107,5 +107,5 @@ dist
 .idea/
 
 #Non aoc stuff
-.2017/
-.pre*
+2017/
+pre*
