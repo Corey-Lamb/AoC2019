@@ -5,7 +5,7 @@ let readInput = async(path) => {
     return res.toString();
 };
 let p1 = async () => {
-    let data = await readInput('d1.txt');
+    let data = await readInput('day1/d1.txt');
     data = data.split('\n').map(num => Number(num));
     const totalUsage = data.reduce((acc, mass) => {
         return acc + (Math.floor(mass / 3) - 2);
@@ -13,7 +13,7 @@ let p1 = async () => {
     console.log(`Part 1: ${totalUsage}`);
 };
 let p2 = async () => {
-    let data = await readInput('d1.txt');
+    let data = await readInput('day1/d1.txt');
     data = data.split('\n').map(num => Number(num));
     const totalUsage = data.reduce((acc, mass) => {
         return acc + getGasTotal(mass);

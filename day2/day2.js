@@ -5,7 +5,7 @@ let readInput = async(path) => {
     return res.toString();
 };
 let p1 = async () => {
-    let data = await readInput('d2.txt');
+    let data = await readInput('day2/d2.txt');
     data = data.split(',').map(datum => Number(datum));
     let i = 0;
     data[1] = 12;
@@ -24,7 +24,7 @@ let p1 = async () => {
     console.log(`Part 1: ${data[0]}`)
 };
 let p2 = async () => {
-    let original = await readInput('d2.txt');
+    let original = await readInput('day2/d2.txt');
     let temp = original.split(',').map(datum => Number(datum));
     let noun = 0;
     let verb = 0;

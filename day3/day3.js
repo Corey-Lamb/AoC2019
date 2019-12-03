@@ -1,11 +1,10 @@
 const fs = require('fs').promises;
-
 let readInput = async(path) => {
     let res = await fs.readFile(path);
     return res.toString();
 };
 let p1 = async () => {
-    const data = await readInput('d3.txt');
+    const data = await readInput('day3/d3.txt');
     const wires = data.split('\n');
     const wire1Path = wires[0].split(',');
     const wire2Path = wires[1].split(',');
@@ -23,7 +22,7 @@ let p1 = async () => {
     console.log(`Part 1: ${minDistance}`);
 };
 let p2 = async () => {
-    const data = await readInput('d3.txt');
+    const data = await readInput('day3/d3.txt');
     const wires = data.split('\n');
     const wire1Path = wires[0].split(',');
     const wire2Path = wires[1].split(',');
