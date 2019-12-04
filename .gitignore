@@ -109,3 +109,4 @@ dist
 #Non aoc stuff
 2017/
 pre*
+.nvmrc
