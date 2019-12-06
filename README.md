@@ -7,3 +7,4 @@ Day | Problem | My solution
 3|[AoC day 3](https://adventofcode.com/2019/day/3) | [day3.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day3/day3.js)
 4|[AoC day 4](https://adventofcode.com/2019/day/4) | [day4.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day4/day4.js)
 5|[AoC day 5](https://adventofcode.com/2019/day/5) | [day5.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day5/day5.js)
+6|[AoC day 6](https://adventofcode.com/2019/day/6) | [day6.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day6/day6.js)
