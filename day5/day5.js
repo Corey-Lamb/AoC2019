@@ -59,26 +59,17 @@ let p2 = async () => {
     data = data.split(',');
     let i = 0;
     let input = '5';
-    // console.log(data);
     while (Number(data[i]) !== 99) {
         let opcode = Number(data[i]) % 100;
-        let writeTo;
-        let operands;
-        let paramModes;
+        let writeTo = i + 3;
+        let paramModes = getParamModes(data[i], 2);
+        let operands = getOperands(paramModes, data, i);
         if (opcode === 1) {
-            paramModes = getParamModes(data[i], 2);
-            operands = getOperands(paramModes, data, i);
-            writeTo = i + 3;
-
             data[data[writeTo]] = operands.reduce((acc, val) => {
                 return acc + val;
             }).toString();
             i += 4;
         } else if (opcode === 2) {
-            paramModes = getParamModes(data[i], 2);
-            operands = getOperands(paramModes, data, i);
-            writeTo = i + 3;
-
             data[data[writeTo]] = operands.reduce((acc, val) => {
                 return acc * val;
             }).toString();
@@ -90,32 +81,21 @@ let p2 = async () => {
             console.log(data[data[i+1]]);
             i += 2;
         } else if (opcode === 5) {
-            paramModes = getParamModes(data[i], 2);
-            operands = getOperands(paramModes, data, i);
-
             if (operands[0] !== 0) {
                 i = operands[1];
             } else {
                 i += 3;
             }
         } else if (opcode === 6) {
-            paramModes = getParamModes(data[i], 2);
-            operands = getOperands(paramModes, data, i);
-
             if (operands[0] === 0) {
                 i = operands[1];
             } else {
                 i += 3;
             }
         } else if (opcode === 7) {
-            paramModes = getParamModes(data[i], 2);
-            operands = getOperands(paramModes, data, i);
-
             data[data[i+3]] = operands[0] < operands[1] ? '1' : '0';
             i += 4;
         } else if (opcode === 8) {
-            paramModes = getParamModes(data[i], 2);
-            operands = getOperands(paramModes, data, i);
             data[data[i+3]] = operands[0] === operands[1] ? '1' : '0';
             i += 4;
         } else {
@@ -144,5 +124,5 @@ let getOperands = (paramModes, arr, index) => {
     }).map(Number);
 };
 
-// p1();
+p1();
 p2();
