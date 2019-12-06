@@ -1,3 +1,4 @@
+const calc = require('../intCode');
 const fs = require('fs').promises;
 let readInput = async(path) => {
     let res = await fs.readFile(path);
@@ -57,72 +58,10 @@ let p1 = async () => {
 let p2 = async () => {
     let data = await readInput('day5/d5.txt');
     data = data.split(',');
-    let i = 0;
     let input = '5';
-    while (Number(data[i]) !== 99) {
-        let opcode = Number(data[i]) % 100;
-        let writeTo = i + 3;
-        let paramModes = getParamModes(data[i], 2);
-        let operands = getOperands(paramModes, data, i);
-        if (opcode === 1) {
-            data[data[writeTo]] = operands.reduce((acc, val) => {
-                return acc + val;
-            }).toString();
-            i += 4;
-        } else if (opcode === 2) {
-            data[data[writeTo]] = operands.reduce((acc, val) => {
-                return acc * val;
-            }).toString();
-            i += 4;
-        } else if (opcode === 3) {
-            data[data[i+1]] = input;
-            i += 2;
-        } else if (opcode === 4) {
-            console.log(data[data[i+1]]);
-            i += 2;
-        } else if (opcode === 5) {
-            if (operands[0] !== 0) {
-                i = operands[1];
-            } else {
-                i += 3;
-            }
-        } else if (opcode === 6) {
-            if (operands[0] === 0) {
-                i = operands[1];
-            } else {
-                i += 3;
-            }
-        } else if (opcode === 7) {
-            data[data[i+3]] = operands[0] < operands[1] ? '1' : '0';
-            i += 4;
-        } else if (opcode === 8) {
-            data[data[i+3]] = operands[0] === operands[1] ? '1' : '0';
-            i += 4;
-        } else {
-            console.error('Unknown opcode reached', opcode,data[i], i);
-            break;
-        }
-    }
+    calc(data, input);
 };
-let getParamModes = (code, numOfParams) => {
-    return code
-        .substring(0, code.length-2)
-        .padStart(numOfParams, '0')
-        .split('')
-        .map(Number)
-        .reverse();
-};
-let getOperands = (paramModes, arr, index) => {
-    return paramModes.map((mode, j) => {
-        if (mode === 0) {
-            return arr[arr[j+index+1]];
-        } else if (mode === 1) {
-            return arr[j+index+1];
-        } else {
-            console.error('BAD MODE', mode);
-        }
-    }).map(Number);
-};
+
 
 p1();
 p2();
