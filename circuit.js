@@ -4,9 +4,9 @@ let circuit = (data, phases, numOfComputers) => {
     let computers = [];
     for (let i = 0; i < numOfComputers; i++) {
         if (i === 0) {
-            computers.push(calc(data, phases[i], output.value));
+            computers.push(calc(data, phases[i % phases.length], output.value));
         } else {
-            computers.push(calc(data, phases[i], computers[i-1].next().value));
+            computers.push(calc(data, phases[i % phases.length], computers[i-1].next().value));
         }
     }
     output = computers[numOfComputers-1].next();
