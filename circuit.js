@@ -6,8 +6,7 @@ let circuit = (data, phases, numOfComputers) => {
         if (i === 0) {
             computers.push(calc(data, phases[i], output.value));
         } else {
-            output = computers[i-1].next();
-            computers.push(calc(data, phases[i], output.value));
+            computers.push(calc(data, phases[i], computers[i-1].next().value));
         }
     }
     output = computers[numOfComputers-1].next();
