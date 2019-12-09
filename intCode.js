@@ -1,5 +1,6 @@
-let calc = (data, input) => {
+function* calc(data, input1, input2) {
     let i = 0;
+    let output = 0;
     while (Number(data[i]) !== 99) {
         let opcode = Number(data[i]) % 100;
 
@@ -23,12 +24,18 @@ let calc = (data, input) => {
             i += 4;
         } else if (opcode === 3) {
             // save input to specified position
-            data[data[i+1]] = input;
+            if (i === 0) {
+                data[data[i+1]] = input1;
+            } else {
+                data[data[i+1]] = input2;
+            }
             i += 2;
         } else if (opcode === 4) {
             // print output from specified position
-            console.log(data[data[i+1]]);
+            output = operands[0];
+
             i += 2;
+            input2 = yield output;
         } else if (opcode === 5) {
             // jump if true
             if (operands[0] !== 0) {
@@ -56,7 +63,9 @@ let calc = (data, input) => {
             break;
         }
     }
-};
+    return output;
+}
+
 let getParamModes = (code, numOfParams) => {
     return code
         .substring(0, code.length-2)
@@ -76,5 +85,4 @@ let getOperands = (paramModes, arr, index) => {
         }
     }).map(Number);
 };
-
 module.exports = calc;
