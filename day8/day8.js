@@ -42,7 +42,7 @@ let p2 = async () => {
         output.push(charToAdd);
     }
     for(let i = 0; i < output.length; i+=width) {
-        console.log(output.toString().replace(/,/g, '').substring(i, i+width).replace(/0/g, ' '));
+        console.log(output.toString().replace(/,/g, '').substring(i, i+width).replace(/0/g, ' ').replace(/1/g, '█'));
     }
 };
 // p1();
