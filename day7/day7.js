@@ -1,11 +1,9 @@
 const fs = require('fs').promises;
 const calc = require('../intCode');
 const circuit = require('../circuit');
+const readInput = require('../getInput');
 const permsOf5 = require('./permutationsOf5');
-let readInput = async(path) => {
-    let res = await fs.readFile(path);
-    return res.toString();
-};
+
 let p1 = async () => {
     let data = await readInput('day7/d7.txt');
     data = data.split(',');
