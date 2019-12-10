@@ -85,6 +85,10 @@ let getParamModes = (code, numOfParams) => {
         .reverse();
 };
 let getOperands = (paramModes, arr, index) => {
+    let maxIndex = Math.max(paramModes.length+index+1,arr[paramModes.length+index+1]);
+    while(arr.length-1 < maxIndex) {
+        arr.push('0');
+    }
     return paramModes.map((mode, i) => {
         if (mode === 0) {
             return arr[arr[i+index+1]];
