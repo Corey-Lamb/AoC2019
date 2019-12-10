@@ -11,3 +11,4 @@ Day | Problem | My solution
 7|[AoC day 7](https://adventofcode.com/2019/day/7) | [day7.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day7/day7.js)
 8|[AoC day 8](https://adventofcode.com/2019/day/8) | [day8.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day8/day8.js)
 9|[AoC day 9](https://adventofcode.com/2019/day/9) | [day9.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day9/day9.js)
+9|[AoC day 10](https://adventofcode.com/2019/day/10) | [day10.js](https://github.com/Corey-Lamb/AoC2019/blob/master/day10/day10.js)
