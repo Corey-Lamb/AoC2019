@@ -63,6 +63,7 @@ let p2 = async () => {
     });
     let sortedAngles = Object.keys(asteroids).sort(sortNumber);
     let luckyNumber200 = asteroids[sortedAngles[199]];
+    console.log(luckyNumber200)
     // got lucky that the 200th sorted angle only had one asteroid in it's line of sight
     console.log(`Part 2: ${luckyNumber200[0].coordinates.x*100 + luckyNumber200[0].coordinates.y}`);
 };
@@ -77,7 +78,7 @@ let convertoToPolar = (origin, coor) => {
     } else if (angle < -Math.PI/2) {
         angle += Math.PI*2;
     }
-    return {distance: (Math.abs(origin.x - coor.x) + Math.abs(origin.y - coor.y)), angle}
+    return {distance: Math.sqrt(Math.pow(Math.abs(origin.x - coor.x), 2) + Math.pow(Math.abs(origin.y - coor.y), 2)), angle}
 };
 p1();
 p2();
