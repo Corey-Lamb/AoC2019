@@ -10,38 +10,37 @@ let p1 = async () => {
     let canvas = [];
     for (let i = 0; i < 10; i++) {
         let arrToPush = [];
-        for (let j = 0; j < 20; j++) {
-            arrToPush.push('0');
+        for (let j = 0; j < 50; j++) {
+            arrToPush.push(0);
         }
         canvas.push(arrToPush);
     }
     let currentPosition = {x:0, y:0, direction:'U'};
+    canvas[currentPosition.y][currentPosition.x] = 1;
     let pointsTouched = {};
-    let output = comp.next(canvas[currentPosition.y][currentPosition.x]);
+    let output = comp.next();
     while (!output.done) {
         pointsTouched[`${currentPosition.y},${currentPosition.x}`] = true;
+
         // get color to paint
-        output = comp.next();
+        output = comp.next(canvas[currentPosition.y][currentPosition.x]);
+
         //paint
-        // console.log('paint', output.value);
         canvas[currentPosition.y][currentPosition.x] = output.value;
 
         // get move instruction
         output = comp.next();
-        // console.log('move instruction', output.value);
 
         // move
         currentPosition = turn(currentPosition, output.value);
-        // console.log('current position', currentPosition);
 
-        //feed in current positions color
-        output = comp.next(canvas[currentPosition.y][currentPosition.x]);
-
+        // go to input
+        output = comp.next();
     }
     canvas.forEach(can => {
         console.log(can.toString().replace(/0/g, ' ').replace(/,/g, '').replace(/1/g, '█'))
     });
-    console.log(Object.keys(pointsTouched).length);
+    // console.log(Object.keys(pointsTouched).length);
 };
 let turn = (currentPosition, moveInstruction) => {
     // console.log(currentPosition, moveInstruction);
