@@ -31,10 +31,8 @@ function* calc(data, phase, input) {
             // print output from specified position
             output = operands[0];
             i += 2;
-            let temp = yield output;
-            if (temp || temp === 0) {
-                input = temp;
-            }
+            yield output;
+
         } else if (opcode === 5) {
             // jump if true
             if (operands[0] !== 0) {

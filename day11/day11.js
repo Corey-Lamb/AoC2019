@@ -40,7 +40,7 @@ let p1 = async () => {
     canvas.forEach(can => {
         console.log(can.toString().replace(/0/g, ' ').replace(/,/g, '').replace(/1/g, '█'))
     });
-    // console.log(Object.keys(pointsTouched).length);
+    console.log('Part 1', Object.keys(pointsTouched).length);
 };
 let turn = (currentPosition, moveInstruction) => {
     // console.log(currentPosition, moveInstruction);
@@ -70,4 +70,5 @@ let turn = (currentPosition, moveInstruction) => {
         }
     }
 };
+// To actually run part 1, just comment out line 19 and change the starting position and canvas size
 p1();
