@@ -13,7 +13,7 @@ let p1 = async () => {
         console.log(output.value);
         output = comp.next();
     }
-    console.log(`Time taken: ${moment().valueOf() - start} ms`)
+    console.log(`Time taken: ${Date.now() - start} ms`)
 }
 let p2 = async () => {
     let data = await readInput('day9/d9.txt');
@@ -26,5 +26,5 @@ let p2 = async () => {
     }
     console.log(`Time taken: ${Date.now() - start} ms`)
 }
-// p1();
-p2();
+p1();
+// p2();

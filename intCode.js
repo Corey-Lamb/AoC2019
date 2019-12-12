@@ -9,7 +9,7 @@ function* calc(data, phase, input) {
         let operands = getOperands(paramModes, data, i);
         let writeTo = Number(data[i + 3]);
         if (paramModes[2] === 2) {
-            writeTo = Number(data[i+3])+relativePointer;
+            writeTo = Number(data[i+3])+Number(relativePointer);
         }
         if (opcode === 1) {
             // add all operands
@@ -20,14 +20,11 @@ function* calc(data, phase, input) {
             i += 4;
         } else if (opcode === 3) {
             // save input to specified position
-            if (i === 0) {
-                data[operands[0]] = phase;
+            input = yield 'input';
+            if (paramModes[0] === 2) {
+                data[Number(data[i+1])+relativePointer] = input;
             } else {
-                if (paramModes[0] === 2) {
-                    data[Number(data[i+1])+relativePointer] = input;
-                } else {
-                    data[data[i+1]] = input;
-                }
+                data[data[i+1]] = input;
             }
             i += 2;
         } else if (opcode === 4) {
@@ -85,10 +82,11 @@ let getParamModes = (code, numOfParams) => {
         .reverse();
 };
 let getOperands = (paramModes, arr, index) => {
+    // console.log('compare', paramModes.length+index+1, arr[paramModes.length+index+1], arr.length-1)
     let maxIndex = Math.max(paramModes.length+index+1,arr[paramModes.length+index+1]);
-    while(arr.length-1 < maxIndex) {
-        arr.push('0');
-    }
+    // while(arr.length-1 < maxIndex) {
+    //     arr.push('0');
+    // }
     return paramModes.map((mode, i) => {
         if (mode === 0) {
             return arr[arr[i+index+1]];

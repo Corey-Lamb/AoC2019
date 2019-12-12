@@ -107,6 +107,6 @@ dist
 .idea/
 
 #Non aoc stuff
-2017/
+201*
 pre*
 .nvmrc
