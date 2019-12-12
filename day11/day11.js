@@ -19,9 +19,7 @@ let p1 = async () => {
     let pointsTouched = {};
     let output = comp.next(canvas[currentPosition.y][currentPosition.x]);
     while (!output.done) {
-        if (!pointsTouched[`${currentPosition.y},${currentPosition.x}`]) {
-            pointsTouched[`${currentPosition.y},${currentPosition.x}`] = true;
-        }
+        pointsTouched[`${currentPosition.y},${currentPosition.x}`] = true;
         // get color to paint
         output = comp.next();
         //paint
