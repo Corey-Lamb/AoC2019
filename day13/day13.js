@@ -68,13 +68,16 @@ let p2 = async () => {
             let joyStickMotion = checkJoystickMovement(screen);
             output = arcade.next(joyStickMotion);
         }
+        draw(screen);
+        await wait(15);
     }
     console.log(`Part 2: ${score}`);
 };
 let draw = (screen) => {
-    screen.forEach(row => {
-        console.log(row.toString().replace(/,/g, ''));
+    let stringToPrint = screen.map(row => {
+        return row.toString().replace(/,/g, '');
     });
+    console.log(stringToPrint.toString().replace(/,/g, '\n'));
 };
 let checkJoystickMovement = (screen) => {
     let xOfBall = 0;
@@ -95,5 +98,8 @@ let checkJoystickMovement = (screen) => {
         return 0;
     }
 };
+let wait = (sleepTime) => {
+    return new Promise(resolve => {setTimeout(resolve, sleepTime)});
+}
 p1();
 p2();
