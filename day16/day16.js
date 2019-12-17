@@ -1,5 +1,6 @@
 const readInput = require('../getInput');
 const start = Date.now();
+let stack = [];
 let p1 = async () => {
     let data = await readInput('day16/d16.txt');
     data = data.split('').map(Number);
@@ -38,11 +39,11 @@ let p2 = async () => {
     previousInput = previousInput.slice(offset);
     console.log(`done appending, ${Date.now() - start}ms`);
     while (numberOfPhases < 100) {
-        output = [0];
+        stack = [];
         for (let j = previousInput.length-1; j >= 0; j--) {
-            output.unshift((output[0] + previousInput[j]) % 10);
+            stack.push((peek() + previousInput[j]) % 10);
         }
-        output.pop();
+        output = stack.reverse();
         previousInput = output;
         numberOfPhases++;
         console.log(`done with phase  ${numberOfPhases}: ${Date.now() - start}ms`);
@@ -68,5 +69,8 @@ let repeatAndShift = (array, times) => {
     newArr.push(temp);
     return newArr;
 };
+let peek = () => {
+    return stack[stack.length - 1] || 0;
+}
 // p1();
 p2();
