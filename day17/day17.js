@@ -55,11 +55,10 @@ let p2 = async () => {
 
     let input = (main+A+B+C+seeLiveFeed).split('').map(char => char.charCodeAt(0));
     console.log(main, A, B, C, seeLiveFeed, '\n', input);
-    let numOfInput = 0;
     const comp = calc(data);
-    let view = '';
-    // get to input
+    // start intCode
     let output = comp.next();
+    let view = '';
     let i = 0;
     let initialViewLength = 0;
     let dustCollected = 0;
@@ -79,7 +78,7 @@ let p2 = async () => {
         }
         // console.log(output);
         if (seeLiveFeed === 'y\n' && initialViewLength && view.length === initialViewLength - 6) {
-            console.log(view.replace(/#/g, '█').replace(/\./g, ' '));
+            console.log(view);
             view = '';
             await wait(500);
         }
