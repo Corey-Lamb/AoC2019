@@ -47,11 +47,11 @@ let p2 = async () => {
      * C= L,4,R,4,L,4,R,8
      */
 
-    let main = 'B,A,B,C,A,C,A,C,B,A\n';//.split('').map(char => char.charCodeAt(0)).reduce((string, char) => {return string+char},'');
-    let A = 'R,8,L,6,L,4,L,10,R,8\n';//.split('').map(char => char.charCodeAt(0)).reduce((string, char) => {return string+char},'');
-    let B = 'L,6,L,4,R,8\n';//.split('').map(char => char.charCodeAt(0)).reduce((string, char) => {return string+char},'');
-    let C = 'L,4,R,4,L,4,R,8\n';//.split('').map(char => char.charCodeAt(0)).reduce((string, char) => {return string+char},'');
-    let seeLiveFeed = 'n\n';//.split('').map(char => char.charCodeAt(0)).reduce((string, char) => {return string+char},'');
+    let main = 'B,A,B,C,A,C,A,C,B,A\n';
+    let A = 'R,8,L,6,L,4,L,10,R,8\n';
+    let B = 'L,6,L,4,R,8\n';
+    let C = 'L,4,R,4,L,4,R,8\n';
+    let seeLiveFeed = 'n\n';
 
     let input = (main+A+B+C+seeLiveFeed).split('').map(char => char.charCodeAt(0));
     console.log(main, A, B, C, seeLiveFeed, '\n', input);
@@ -61,9 +61,14 @@ let p2 = async () => {
     // get to input
     let output = comp.next();
     let i = 0;
+    let initialViewLength = 0;
+    let dustCollected = 0;
     while (!output.done) {
 
         if (output.value === 'input') {
+            if (i === 0) {
+                initialViewLength = view.length;
+            }
             console.log(view);
             view = '';
             output = comp.next(input[i]);
@@ -72,12 +77,23 @@ let p2 = async () => {
             view += (String.fromCharCode(output.value));
             output = comp.next()
         }
-        console.log(output);
+        // console.log(output);
+        if (seeLiveFeed === 'y\n' && initialViewLength && view.length === initialViewLength - 6) {
+            console.log(view.replace(/#/g, '█').replace(/\./g, ' '));
+            view = '';
+            await wait(500);
+        }
+        if (output.value) {
+            dustCollected = output.value;
+        }
     }
-    console.log(view);
     // main movement function
-    console.log('DONE', output, numOfInput);
+    // console.log(initialViewLength)
+    console.log('DONE', dustCollected, `time: ${Date.now() - start}ms`);
 
 };
+let wait = (sleepTime) => {
+    return new Promise(resolve => {setTimeout(resolve, sleepTime)});
+}
 // p1();
 p2();
