@@ -87,11 +87,11 @@ let getOperands = (paramModes, arr, index) => {
     // }
     return paramModes.map((mode, i) => {
         if (mode === 0) {
-            return arr[arr[i+index+1]];
+            return arr[arr[i+index+1]] || 0;
         } else if (mode === 1) {
-            return arr[i+index+1];
+            return arr[i+index+1] || 0;
         } else if (mode === 2) {
-            return arr[Number(arr[i+index+1])+relativePointer];
+            return arr[Number(arr[i+index+1])+relativePointer] || 0;
         } else {
             console.error('BAD MODE', mode);
         }
